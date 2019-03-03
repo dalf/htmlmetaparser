@@ -26,8 +26,6 @@ const { fetch_image_url_to_base64 } = require('./image');
 const feed = require('./feed');
 const storage = require('./storage');
 
-console.log(storage);
-
 async function mergemetas(url, metadata, metadata2, data) {
   // mainUrl
   let mainUrl = url;
@@ -106,7 +104,7 @@ async function mergemetas(url, metadata, metadata2, data) {
 
   //
   result.forEach(r => {
-    storage.store(r);
+    storage.storeUrl(r);
   });
 }
 
@@ -119,7 +117,7 @@ async function parseHtml(url, html, data) {
 
   //
   if (metadata.logo !== null) {
-    // metadata.logoBase64 = await fetch_image_url_to_base64(fetch, metadata.logo);
+    metadata.logoBase64 = await fetch_image_url_to_base64(metadata.logo);
   }
 
   // htmlmetaparser

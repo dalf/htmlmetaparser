@@ -1,0 +1,55 @@
+?? <- (lang, mime, mobile|desktop) -> URL
+
+
+URL <-> (
+    favicon ,
+    link { title, URL },
+    jsonld/potentialAction/...SearchAction
+    rdfa/@graph/og:type
+    twitter/site
+    applinks/
+    )
+
+
+url -> {
+	sameAs: [
+		url1,
+		url2,
+		....
+	],
+	date: xxxx,
+	image: xxxx,
+  	logoBase64: xxxx,
+	logo: xxxxx,
+	publisher: xxxx,
+	title: xxxx,
+	description: xxxx,
+	lang: xxxx
+	media: xxx
+
+	jsonld: {
+	  "@type": "Organization",
+    	  "name": "Le Monde",
+	    "address": {
+              ...
+            }
+	}
+}
+
+url -> {
+	lang: xxxx
+	media: xxx
+	mainUrl: xxx
+}
+
+url -> {
+	redirect: xxx
+}
+
+
+store favicon as
+url -> {
+  url: xxx
+  mime: xxx
+  content: xxxx
+}

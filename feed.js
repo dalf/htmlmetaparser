@@ -1,5 +1,6 @@
 'use strict';
 
+const csvparse = require('csv-parse');
 const fs = require('fs');
 const {
   urlQueue
@@ -46,7 +47,7 @@ function start() {
   });
 
   urlQueue.empty().then(() => {
-    fs.createReadStream(__dirname + '/top-100.csv').pipe(csvparser);
+    fs.createReadStream(__dirname + '/top-1000.csv').pipe(csvparser);
   });
 
   urlQueue.add({
@@ -60,6 +61,6 @@ function add(data) {
 }
 
 module.exports = {
-  start: startTest,
+  start: start,
   add: add
 }
