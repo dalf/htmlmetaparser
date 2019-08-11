@@ -4,8 +4,7 @@ const elasticsearch = require('elasticsearch');
 const crypto = require('crypto');
 
 const client = new elasticsearch.Client({
-  host: 'localhost:9200',
-  log: 'debug'
+  host: 'localhost:9200', log: 'error'
 });
 
 
@@ -21,8 +20,6 @@ function init() {
   }, function(err, resp, status) {
     if (err) {
       console.log(err);
-    } else {
-      console.log("create", resp);
     }
   });
 }
@@ -34,7 +31,9 @@ function storeUrl(data) {
     type: 'url',
     body: data
   }, function(err, resp, status) {
-    console.log(resp);
+    if (err) {
+      console.log(err, resp, status);      
+    }
   });
 }
 

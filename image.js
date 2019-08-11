@@ -1,8 +1,8 @@
 'use strict';
 
 const {
-  fetch,
-  fetch_image_options
+  got,
+  got_image_options
 } = require('./fetch');
 const b64toBuff = require('base64-arraybuffer');
 const icoToPng = require('ico-to-png');

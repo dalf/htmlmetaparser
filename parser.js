@@ -117,7 +117,7 @@ async function parseHtml(url, html, data) {
 
   //
   if (metadata.logo !== null) {
-    metadata.logoBase64 = await fetch_image_url_to_base64(metadata.logo);
+    // metadata.logoBase64 = await fetch_image_url_to_base64(metadata.logo);
   }
 
   // htmlmetaparser

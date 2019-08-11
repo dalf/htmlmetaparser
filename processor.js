@@ -5,26 +5,20 @@ const {
   urlQueue
 } = require('./queues');
 const {
-  fetch,
-  disconnect,
-  disconnectAll,
-  AbortController,
-  CookieJar,
-  fetch_html_options
-} = require('./fetch');
+  fetch
+} = require('./fetchbrowser');
 
 async function crawl_job(data, parser) {
   const url = data.url;
   logger.info("fetching %s", url, {});
   try {
-    const resp = await fetch(url, fetch_html_options);
-    logger.debug('fetched  %s HTTP%d %s', url, resp.httpVersion, ', ', resp._mime);
-    if (resp.status !== 200) {
-      logger.debug('error    %s :HTTP status code = %d', url, resp.status);
+    const resp = await fetch(url);
+    logger.debug('fetched', url);
+    if (resp.statusCode !== 200) {
+      logger.debug('error    %s :HTTP status code = %d ; %s', url, resp.statusCode, resp.err);
     } else {
-      const html = await resp.text();
+      const html = resp.content;
       await parser(resp.url, html, data);
-      // await disconnect(url);
       logger.debug('done     %s', url);
     }
   } catch (error) {
@@ -36,7 +30,7 @@ async function crawl_job(data, parser) {
 
 function start(parser) {
   // Process
-  urlQueue.process(30, async (job) => {
+  urlQueue.process(5, async (job) => {
     if (job.data.end === true) {
       logger.info("closing");
     } else {
