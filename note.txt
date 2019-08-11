@@ -47,7 +47,7 @@ url -> {
 }
 
 
-store favicon as
+store favicon in index "content" :
 url -> {
   url: xxx
   mime: xxx
